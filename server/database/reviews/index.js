@@ -8,7 +8,7 @@ const reviewSchema = mongoose.Schema(
     rating: { type: Number, required: true },
     reviewText: { type: String, required: true },
     isRestaurantReview: { type: Boolean },
-    isFoodReview: { type: boolean },
+    isFoodReview: { type: Boolean },
     photos: [{ type: mongoose.Types.ObjectId, ref: "Images" }],
   },
   {
