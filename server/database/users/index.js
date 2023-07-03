@@ -30,7 +30,23 @@ userSchema.statics.findEmailandPhone = async ({ email, phoneNumber }) => {
   return false;
 };
 
+userSchema.statics.findByEmailAndPassword = async ({ email, password }) => {
+  //check whether the email exists
+  const user = await userModel.findOne({ email });
+  if (!user) throw new Error("User doesnot exist");
+
+  //compare password
+  const doesPasswordMatch = await bcrypt.compare(password, user.password);
+
+  if (!doesPasswordMatch) {
+    throw new Error("Invalid password");
+  }
+  return user;
+};
+
 userSchema.pre("save", function (next) {
+  //middleware function in mongoose  "save" is a predefined operation in mongoose
+
   const user = this;
   //password is not modified
   if (!user.isModified("password")) return next();
