@@ -47,7 +47,8 @@ userSchema.statics.findByEmailAndPassword = async ({ email, password }) => {
 userSchema.pre("save", function (next) {
   //middleware function in mongoose  "save" is a predefined operation in mongoose
 
-  const user = this;
+  const user = this; // an instance variable created to the userSchema,it can access everything of userSchema
+
   //password is not modified
   if (!user.isModified("password")) return next();
 

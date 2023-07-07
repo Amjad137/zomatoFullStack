@@ -17,13 +17,11 @@ const Router = express.Router();
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
-AWS.config.update({
-  accessKeyId: process.env.AWS_S3_ACCESS_KEY,
-  secretAccessKey: process.env.AWS_S3_SECRET_KEY,
+const s3Bucket = new AWS.S3({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   region: "ap-south-1",
 });
-
-const s3Bucket = new AWS.S3();
 
 /*
 Route         /
@@ -33,7 +31,7 @@ Access        Public
 Method        POST
 */
 
-Router.post("/", upload.single("file"), async (req, res) => {
+Router.post("/", upload.single("image"), async (req, res) => {
   try {
     const file = req.file;
 
@@ -55,6 +53,7 @@ Router.post("/", upload.single("file"), async (req, res) => {
     };
 
     const uploadImage = await s3Upload(bucketOptions);
+    return res.status(200).json({ uploadImage });
   } catch (e) {
     return res.status(500).json({ error: e.message });
   }

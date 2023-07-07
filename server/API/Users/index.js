@@ -1,7 +1,6 @@
 import express from "express";
 import { reviewModel } from "../../database/reviews";
 import { userModel } from "../../database/users";
-
 const Router = express.Router();
 
 /*

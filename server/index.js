@@ -7,7 +7,7 @@ import helmet from "helmet";
 
 //import googleAuthConfig
 // import googleAuthConfig from "./config/google.config";
-
+import RouteConfig from "./config/route.config";
 //API
 import Auth from "./API/Auth";
 import Restaurant from "./API/Restaurant";
@@ -16,6 +16,7 @@ import Menu from "./API/Menu";
 import Image from "./API/Images";
 import Order from "./API/Orders";
 import Review from "./API/Reviews";
+import passport from "passport";
 
 //DB
 const dbConnection = require("./database/connection");
@@ -32,6 +33,7 @@ zomato.use(helmet());
 
 //google Auth
 // googleAuthConfig(passport);
+RouteConfig(passport);
 
 //for application routes (micro services)
 zomato.use("/auth", Auth);

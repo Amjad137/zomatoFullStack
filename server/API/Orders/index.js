@@ -1,5 +1,6 @@
 import express from "express";
 import { orderModel } from "../../database/orders";
+import passport from "passport";
 
 const Router = express.Router();
 
@@ -11,16 +12,20 @@ Access        Public
 Method        GET
 */
 
-Router.get("/:_id", async (req, res) => {
-  try {
-    const { _id } = req.params;
-    const getOrders = await orderModel.findOne({ user: _id });
+Router.get(
+  "/:_id",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      const { _id } = req.params;
+      const getOrders = await orderModel.findOne({ user: _id });
 
-    if (!getOrders) return res.status(404).json({ error: "User Not Found" });
-  } catch (e) {
-    return res.status(500).json({ error: e.message });
+      if (!getOrders) return res.status(404).json({ error: "User Not Found" });
+    } catch (e) {
+      return res.status(500).json({ error: e.message });
+    }
   }
-});
+);
 
 /*
 Route         /new/:_id
