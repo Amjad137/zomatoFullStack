@@ -1,9 +1,6 @@
 import express from "express";
-// import { userModel } from "../../database/users";
 import { userModel } from "../../database/allModel";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
-
+import { validateSignup, validateSignin } from "../../Validation/auth";
 const Router = express.Router();
 
 /*
@@ -16,33 +13,72 @@ Method        POST
 
 Router.post("/signup", async (req, res) => {
   try {
-    const { email, password, fullName, phoneNumber } = req.body.credentials;
-
-    const checkUserbyEmail = await userModel.findOne({ email });
-    const checkUserbyPhone = await userModel.findOne({ phoneNumber });
-
-    if (checkUserbyEmail || checkUserbyPhone) {
-      return res.json({ error: " User Already Exist" });
-    }
-
-    // hashing and salting
-    const bcryptSalt = await bcrypt.genSalt(8);
-
-    const hashedPassword = await bcrypt.hash(password, bcryptSalt);
+    await validateSignup(req.body.credentials);
+    await userModel.findEmailandPhone(req.body.credentials);
 
     //DB
-    await userModel.create({
-      ...req.body.credentials,
-      password: hashedPassword,
-    });
+    const newUser = await userModel.create(req.body.credentials);
 
     //JWT
-    const token = jwt.sign({ user: { fullName, email } }, "ZomatoApp");
-
+    const token = newUser.generateJwtToken();
     return res.status(200).json({ token });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
 });
 
+/*
+Route         /signin
+Descrip       Signin with email and password
+Params        None
+Access        Public
+Method        POST
+*/
+
+Router.post("/signin", async (req, res) => {
+  try {
+    await validateSignin(req.body.credentials);
+    const user = await userModel.findByEmailAndPassword(req.body.credentials);
+    //jwt token
+    const token = user.generateJwtToken();
+
+    return res.status(200).json({ token, status: "Success" });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+});
+
+/*
+Route         /google
+Descrip       Google Signin
+Params        None
+Access        Public
+Method        GET
+*/
+
+// Router.get(
+//   "/google",
+//   passport.authenticate("google", {
+//     scope: [
+//       "https://www.googleapis.com/auth/userinfo.profile",
+//       "https://www.googleapis.com/auth/userinfo.email",
+//     ],
+//   })
+// );
+
+/*
+Route         /google/callback
+Descrip       Google Signin CallBack
+Params        None
+Access        Public
+Method        GET
+*/
+
+// Router.get(
+//   "/google/callback",
+//   passport.authenticate("google", { failureRedirect: "/" }),
+//   (req, res) => {
+//     return res.json({ token: req.session.passport.user.token });
+//   }
+// );
 export default Router;
