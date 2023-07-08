@@ -3,10 +3,10 @@ require("dotenv").config(); //as we don't require this thing more often
 import Express from "express";
 import cors from "cors";
 import helmet from "helmet";
-// import passport from "passport";
+import passport from "passport";
 
 //import googleAuthConfig
-// import googleAuthConfig from "./config/google.config";
+import googleAuthConfig from "./config/google.config";
 import RouteConfig from "./config/route.config";
 //API
 import Auth from "./API/Auth";
@@ -16,7 +16,6 @@ import Menu from "./API/Menu";
 import Image from "./API/Images";
 import Order from "./API/Orders";
 import Review from "./API/Reviews";
-import passport from "passport";
 
 //DB
 const dbConnection = require("./database/connection");
@@ -28,11 +27,11 @@ zomato.use(Express.json());
 zomato.use(Express.urlencoded({ extended: false }));
 zomato.use(cors());
 zomato.use(helmet());
-// zomato.use(passport.initialize());
-// zomato.use(passport.session());
+zomato.use(passport.initialize());
+zomato.use(passport.session());
 
 //google Auth
-// googleAuthConfig(passport);
+googleAuthConfig(passport);
 RouteConfig(passport);
 
 //for application routes (micro services)
