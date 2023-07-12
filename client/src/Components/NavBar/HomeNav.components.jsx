@@ -34,14 +34,20 @@ function NavLg() {
         className="relative hidden w-full lg:block overflow-x-hidden"
         style={{ height: "28rem" }}
       >
-        <div className="absolute container flex flex-col justify-between items-center p-3 text-black left-24 top-5 text-xl font-light">
+        <img
+          src="https://b.zmtcdn.com/web_assets/81f3ff974d82520780078ba1cfbd453a1583259680.png"
+          alt="Backdrop Poster"
+          className="w-full h-full object-cover object-center"
+        />
+
+        <div className="absolute container flex flex-col justify-between items-center p-3 text-white left-24 top-5 text-xl font-light">
           <div className="container flex justify-between">
             <Link to="#">Get the App</Link>
             <div className="flex gap-10">
               <Link to="#">Investor Relations</Link>
               <Link to="#">Add Restaurants</Link>
               <Link to="#">Login</Link>
-              <Link to="#">Sign Up</Link>
+              <Link to="/signup">Sign Up</Link>
               <Link
                 to="#"
                 className="border items-center justify-center pt-1  rounded-full p-1"
@@ -77,7 +83,7 @@ function NavLg() {
     </>
   );
 }
-const NavBar = () => {
+const HomeNavBar = () => {
   return (
     <>
       <nav>
@@ -97,4 +103,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default HomeNavBar;
