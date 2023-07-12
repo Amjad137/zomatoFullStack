@@ -5,9 +5,10 @@ export const validateSignup = (userData) => {
     fullName: joi.string().required().min(4),
     email: joi.string().email(),
     password: joi.string().min(5),
-    address: joi
-      .array()
-      .items(joi.object({ detail: joi.string(), for: joi.string() })),
+    // address: joi
+    //   .array()
+    //   .items(joi.object({ detail: joi.string(), for: joi.string() })),
+    address: joi.string().min(3),
     phoneNumber: joi.number(),
   });
   return schema.validateAsync(userData);
