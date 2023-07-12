@@ -13,19 +13,17 @@ Method        POST
 */
 
 Router.post("/signup", async (req, res) => {
-  try {
-    await validateSignup(req.body.credentials);
-    await userModel.findEmailandPhone(req.body.credentials);
+  await validateSignup(req.body.credentials);
+  await userModel.findEmailandPhone(req.body.credentials);
 
-    //DB
-    const newUser = await userModel.create(req.body.credentials);
+  //DB
+  const newUser = await userModel.create(req.body.credentials);
 
-    //JWT
-    const token = newUser.generateJwtToken();
-    return res.status(200).json({ token });
-  } catch (error) {
-    return res.status(500).json({ error: error.message });
-  }
+  //JWT
+  const token = newUser.generateJwtToken();
+  return res.status(200).json({ token });
+
+  return res.status(500).json({ error: error.message });
 });
 
 /*
