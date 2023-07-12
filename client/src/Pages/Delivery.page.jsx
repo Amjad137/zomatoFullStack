@@ -1,5 +1,6 @@
 import React from "react";
 import DeliveryCarousel from "../Components/Delivery/DeliveryCarousel.components";
+import DefaultLayout from "../Layouts/Default.layout";
 const Delivery = () => {
   return (
     <>
@@ -8,4 +9,4 @@ const Delivery = () => {
   );
 };
 
-export default Delivery;
+export default DefaultLayout(Delivery);
