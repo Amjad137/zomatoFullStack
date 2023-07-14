@@ -14,7 +14,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { FcGoogle } from "react-icons/fc";
-import Popup from "../Components/PopUps/Popup.components";
+
 function Copyright(props) {
   return (
     <Typography
@@ -37,7 +37,7 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function SignUp() {
+export default function SignIn() {
   const [userData, setuserData] = useState({
     fullName: "",
     email: "",
@@ -98,7 +98,7 @@ export default function SignUp() {
           }}
         >
           <Typography component="h1" variant="h5">
-            Sign up
+            Sign In
           </Typography>
           <Box
             component="form"
@@ -107,29 +107,6 @@ export default function SignUp() {
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField
-                  autoComplete="given-name"
-                  name="fullName"
-                  required
-                  fullWidth
-                  id="fullName"
-                  label="Full Name"
-                  autoFocus
-                  value={userData.fullName}
-                  onChange={OnChange}
-                />
-              </Grid>
-              {/* <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
-                />
-              </Grid> */}
               <Grid item xs={12}>
                 <TextField
                   required
@@ -155,38 +132,6 @@ export default function SignUp() {
                   onChange={OnChange}
                 />
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="address"
-                  label="Address"
-                  name="address"
-                  autoComplete="address"
-                  value={userData.address}
-                  onChange={OnChange}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="phoneNumber"
-                  label="Phone Number"
-                  name="phoneNumber"
-                  autoComplete="phoneNumber"
-                  value={userData.phoneNumber}
-                  onChange={OnChange}
-                />
-              </Grid>
-              {/* <Grid item xs={12}>
-                <FormControlLabel
-                  control={
-                    <Checkbox value="allowExtraEmails" color="primary" />
-                  }
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid> */}
             </Grid>
             <Button
               type="submit"
@@ -194,7 +139,7 @@ export default function SignUp() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              Sign In
             </Button>
             <Link href="http://localhost:5500/auth/google">
               <Button
@@ -211,8 +156,8 @@ export default function SignUp() {
             </Link>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/signin" variant="body2">
-                  Already have an account? Sign in
+                <Link href="/signup" variant="body2">
+                  Don't have an account? Sign up
                 </Link>
               </Grid>
             </Grid>

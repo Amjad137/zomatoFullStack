@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { BiUser } from "react-icons/bi";
 import { MdLocationPin } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
+import Popup from "../PopUps/Popup.components";
+
 function NavSm() {
   return (
     <>
@@ -28,8 +30,19 @@ function NavSm() {
 }
 
 function NavLg() {
+  const [openSignin, setOpenSignin] = useState(false);
+  const [openSignup, setOpenSignup] = useState(false);
+
+  const openSigninDialog = () => {
+    setOpenSignin(true);
+  };
+  const openSignupDialog = () => {
+    setOpenSignup(true);
+  };
   return (
     <>
+      <Popup isOpen={openSignin} setIsOpen={setOpenSignin} pageName="SignIn" />
+      <Popup isOpen={openSignup} setIsOpen={setOpenSignup} pageName="SignUp" />
       <div
         className="relative hidden w-full lg:block overflow-x-hidden"
         style={{ height: "28rem" }}
@@ -46,8 +59,11 @@ function NavLg() {
             <div className="flex gap-10">
               <Link to="#">Investor Relations</Link>
               <Link to="#">Add Restaurants</Link>
-              <Link to="#">Login</Link>
-              <Link to="/signup">Sign Up</Link>
+
+              <button onClick={openSigninDialog}>Login</button>
+
+              <button onClick={openSignupDialog}>Sign Up</button>
+
               <Link
                 to="#"
                 className="border items-center justify-center pt-1  rounded-full p-1"
@@ -64,13 +80,13 @@ function NavLg() {
             />
             <h1>Discover the best food & drinks in Hampi-Hospet</h1>
             <div className="bg-white p-3 flex flex-row text-gray-400 w-1/2 text-sm rounded-md">
-              <MdLocationPin className="text-zomato-300 mr-4" />
+              <MdLocationPin className="text-zomato-300 mr-4 text-xl" />
               <input
                 type="text"
-                className="border-r-2 w-1/4 border-none focus:outline-none"
+                className="border-r-2 w-1/4 border-r-2 border-gray-400 focus:outline-none"
                 placeholder="Location"
               />
-              <BsSearch className=" mr-5 ml-5 text-gray-500" />
+              <BsSearch className=" mr-5 ml-5 text-gray-500 text-xl" />
               <input
                 type="text"
                 className="w-3/4 border-none focus:outline-none"
