@@ -45,7 +45,8 @@ export default function SignUp() {
     address: "",
     phoneNumber: "",
   });
-
+  const [openSignin, setOpenSignin] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -74,6 +75,7 @@ export default function SignUp() {
       localStorage.setItem("token", token);
 
       alert("User created Successfully");
+      setIsOpen(false);
     } else {
       // Handle error response
       const errorResponse = await response.json();
@@ -85,6 +87,14 @@ export default function SignUp() {
   const OnChange = (e) => {
     setuserData({ ...userData, [e.target.name]: e.target.value });
   };
+  const openSigninDialog = () => {
+    setOpenSignin(true);
+  };
+  if (!isOpen) {
+    return (
+      <h1 className="font-light text-gray-800">Signup is Done Successfully</h1>
+    ); // Return null to hide the component
+  }
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
