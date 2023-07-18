@@ -4,4 +4,4 @@ const Dining = () => {
   return <div>Dining</div>;
 };
 
-export default DefaultLayout(Dining);
+export default Dining;

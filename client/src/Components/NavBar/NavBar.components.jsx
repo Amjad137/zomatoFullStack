@@ -26,7 +26,29 @@ function NavSm() {
     </>
   );
 }
-
+function NavMd() {
+  return (
+    <>
+      <div className="items-center justify-between flex w-full lg:hidden">
+        <div className="w-28">
+          <img
+            src="https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png"
+            alt="logo"
+            className="w-full h-full"
+          />
+        </div>
+        <div className="flex items-center gap-3">
+          <button className="bg-zomato-400 text-white py-2 px-3 rounded-full">
+            Use App
+          </button>
+          <span className="border items-center justify-center pt-1  rounded-full p-1">
+            <BiUser />
+          </span>
+        </div>
+      </div>
+    </>
+  );
+}
 function NavLg() {
   return (
     <>
@@ -72,9 +94,9 @@ const NavBar = () => {
           <NavSm />
         </div>
 
-        {/* <div className="hidden md:flex lg:hidden">
+        <div className="hidden md:flex lg:hidden">
           <NavMd />
-        </div> */}
+        </div>
 
         <div className="hidden md:hidden lg:flex">
           <NavLg />

@@ -4,4 +4,4 @@ const NightLife = () => {
   return <div>NightLife</div>;
 };
 
-export default DefaultLayout(NightLife);
+export default NightLife;

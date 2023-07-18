@@ -9,7 +9,6 @@ const HomeLayout =
       <div>
         <HomeNavBar />
         <Component {...props} />
-        <FoodTab />
       </div>
     );
   };
