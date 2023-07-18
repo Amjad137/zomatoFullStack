@@ -58,7 +58,7 @@ function NavLg() {
             <Link to="#">Get the App</Link>
             <div className="flex gap-10">
               <Link to="#">Investor Relations</Link>
-              <Link to="#">Add Restaurants</Link>
+              <Link to="/restaurants">Add Restaurants</Link>
 
               <button onClick={openSigninDialog}>Login</button>
 

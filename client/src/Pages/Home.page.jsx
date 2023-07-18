@@ -25,7 +25,7 @@ const HomePage = () => {
         </div>
 
         <div className="mt-4 ml-5 border w-1/3 overflow-hidden rounded-lg">
-          <Link to="/delivery">
+          <Link to="/dining">
             <img
               src="https://b.zmtcdn.com/webFrontend/d026b357feb0d63c997549f6398da8cc1647364915.jpeg?output-format=webp&fit=around|402:360&crop=402:360;*,*"
               alt="Card1Image"

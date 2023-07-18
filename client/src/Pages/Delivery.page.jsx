@@ -9,4 +9,4 @@ const Delivery = () => {
   );
 };
 
-export default DefaultLayout(Delivery);
+export default Delivery;
