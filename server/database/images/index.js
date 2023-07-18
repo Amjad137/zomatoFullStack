@@ -2,8 +2,15 @@ import mongoose from "mongoose";
 
 const imagesSchema = mongoose.Schema(
   {
-    images: [
+    restaurantImages: [
       {
+        name: { type: String, required: true },
+        location: { type: String, required: true },
+      },
+    ],
+    foodImages: [
+      {
+        name: { type: String, required: true },
         location: { type: String, required: true },
       },
     ],

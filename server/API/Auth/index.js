@@ -13,17 +13,19 @@ Method        POST
 */
 
 Router.post("/signup", async (req, res) => {
-  await validateSignup(req.body.credentials);
-  await userModel.findEmailandPhone(req.body.credentials);
+  try {
+    await validateSignup(req.body.credentials);
+    await userModel.findEmailandPhone(req.body.credentials);
 
-  //DB
-  const newUser = await userModel.create(req.body.credentials);
+    //DB
+    const newUser = await userModel.create(req.body.credentials);
 
-  //JWT
-  const token = newUser.generateJwtToken();
-  return res.status(200).json({ token });
-
-  return res.status(500).json({ error: error.message });
+    //JWT
+    const token = newUser.generateJwtToken();
+    return res.status(200).json({ token });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
 });
 
 /*
@@ -75,7 +77,10 @@ Method        GET
 
 Router.get(
   "/google/callback",
-  passport.authenticate("google", { failureRedirect: "/" }),
+  passport.authenticate("google", {
+    successRedirect: "http://localhost:3000/",
+    failureRedirect: "/signup",
+  }),
   (req, res) => {
     return res.json({ token: req.session.passport.user.token });
   }
