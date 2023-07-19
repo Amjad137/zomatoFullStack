@@ -74,4 +74,22 @@ Router.get("/search", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+/*
+Route         /
+Descrip       Add Restaurant Details
+Params        None
+Access        Public
+Method        POST
+*/
+
+Router.post("/", async (req, res) => {
+  try {
+    const restaurantData = req.body.credentials;
+    await restaurantModel.create(restaurantData);
+    return res.status(200).json({ status: "success" });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+});
 export default Router;

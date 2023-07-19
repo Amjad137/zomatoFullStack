@@ -4,7 +4,13 @@ import { MdLocationPin } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import Popup from "../PopUps/Popup.components";
+import { useEffect } from "react";
 
+const token = localStorage.getItem("jwtToken");
+const logOut = () => {
+  localStorage.removeItem("jwtToken");
+  window.location.reload();
+};
 function NavSm() {
   return (
     <>
@@ -20,9 +26,18 @@ function NavSm() {
           <button className="bg-zomato-400 text-white py-2 px-3 rounded-full">
             Use App
           </button>
+
           <span className="border items-center justify-center pt-1  rounded-full p-1">
-            <BiUser />
+            {token ? (
+              <button onClick={logOut}>Sign Out</button>
+            ) : (
+              <Link to={"/signin"}>Sign In</Link>
+            )}
           </span>
+
+          {/* <button onClick={handleToken(myToken)}>
+            {token === myToken ? "Logout" : "Signin"}
+          </button> */}
         </div>
       </div>
     </>
@@ -60,7 +75,11 @@ function NavLg() {
               <Link to="#">Investor Relations</Link>
               <Link to="/restaurants">Add Restaurants</Link>
 
-              <button onClick={openSigninDialog}>Login</button>
+              {token ? (
+                <button onClick={logOut}>Logout </button>
+              ) : (
+                <button onClick={openSigninDialog}>Login </button>
+              )}
 
               <button onClick={openSignupDialog}>Sign Up</button>
 
@@ -83,7 +102,7 @@ function NavLg() {
               <MdLocationPin className="text-zomato-300 mr-4 text-xl" />
               <input
                 type="text"
-                className="border-r-2 w-1/4 border-r-2 border-gray-400 focus:outline-none"
+                className="border-r-2 w-1/4 border-gray-400 focus:outline-none"
                 placeholder="Location"
               />
               <BsSearch className=" mr-5 ml-5 text-gray-500 text-xl" />

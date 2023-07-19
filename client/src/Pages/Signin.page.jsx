@@ -178,6 +178,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -229,10 +230,11 @@ export default function SignIn() {
       const token = data.token; // Extract the token from the response
 
       // Save the token in local storage or any other secure storage mechanism
-      localStorage.setItem("token", token);
+      localStorage.setItem("jwtToken", token);
 
       alert("Signed In Successfully");
       setIsOpen(false);
+      window.location = "/";
     } else {
       // Handle error response
       const errorResponse = await response.json();
