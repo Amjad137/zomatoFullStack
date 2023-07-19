@@ -66,7 +66,7 @@ const Restaurants = () => {
     setRestaurantData({ ...restaurantData, photo: imageLocation });
   }
   return (
-    <div className=" ml-40 m-10 flex justify-center w-1/3 items-center border-2 rounded-md border-gray-200 bg-slate-100">
+    <div className=" ml-40 m-10 flex justify-center w-1/3 items-center border-2 rounded-lg border-gray-200 shadow-md shadow-slate-500 bg-slate-100">
       <form onSubmit={handleSubmit}>
         <div className="container items-start justify-center flex flex-col m-4 p-4 gap-4">
           <label className=" border-2 border-gray-200 p-2 rounded-md font-light">

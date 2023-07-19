@@ -1,6 +1,7 @@
 import React from "react";
 import HomeLayout from "../Layouts/Home.layout";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const HomePage = () => {
   return (
