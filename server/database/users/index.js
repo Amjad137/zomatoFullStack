@@ -16,7 +16,9 @@ const userSchema = mongoose.Schema(
 
 //JWT
 userSchema.methods.generateJwtToken = function () {
-  return jwt.sign({ user: this._id.toString() }, "ZomatoApp");
+  return jwt.sign({ user: this._id.toString() }, process.env.JWT_SECRET_KEY, {
+    expiresIn: "7d",
+  });
 };
 
 userSchema.statics.findEmailandPhone = async ({ email, phoneNumber }) => {
@@ -33,7 +35,7 @@ userSchema.statics.findEmailandPhone = async ({ email, phoneNumber }) => {
 userSchema.statics.findByEmailAndPassword = async ({ email, password }) => {
   //check whether the email exists
   const user = await userModel.findOne({ email });
-  if (!user) throw new Error("User doesnot exist");
+  if (!user) throw new Error("User Doesn't exist");
 
   //compare password
   const doesPasswordMatch = await bcrypt.compare(password, user.password);
