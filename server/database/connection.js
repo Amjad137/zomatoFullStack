@@ -9,13 +9,14 @@
 //   });
 // };
 
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 function dbConnection() {
   const DB_URL = process.env.MONGO_URL;
   mongoose.connect(DB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    // serverSelectionTimeoutMS: 10000,
   });
 }
 const db = mongoose.connection;

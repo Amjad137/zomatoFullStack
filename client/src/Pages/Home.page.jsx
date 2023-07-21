@@ -31,7 +31,7 @@ const HomePage = () => {
               src="https://b.zmtcdn.com/webFrontend/d026b357feb0d63c997549f6398da8cc1647364915.jpeg?output-format=webp&fit=around|402:360&crop=402:360;*,*"
               alt="Card1Image"
               className="w-full h-40 object-cover "
-            />
+            ></img>
             <div className="mt-1 ml-5">
               <h2 className="text-xl text-gray-800 font-normal">Dining</h2>
               <p className="text-gray-600 mt-1">
