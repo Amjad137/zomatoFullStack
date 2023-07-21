@@ -30,6 +30,23 @@ Router.get("/", async (req, res) => {
 
 /*
 Route         /
+Descrip       Get All Restaurant Details
+Params        None
+Access        Public
+Method        GET
+*/
+
+Router.get("/r", async (req, res) => {
+  try {
+    const restaurants = await restaurantModel.find(); //included in {} as it should be like this city:city
+    return res.json({ restaurants });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+});
+
+/*
+Route         /
 Descrip       Get Particular Restaurant Details
 Params        _id
 Access        Public

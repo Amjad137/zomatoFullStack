@@ -23,11 +23,21 @@ dbConnection();
 
 const zomato = Express();
 
+var session = require("express-session");
+
 zomato.use(Express.json());
 zomato.use(Express.urlencoded({ extended: false }));
 zomato.use(cors());
 zomato.use(helmet());
 zomato.use(passport.initialize());
+zomato.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: true },
+  })
+);
 zomato.use(passport.session());
 
 //google Auth
