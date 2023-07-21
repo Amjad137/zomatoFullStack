@@ -5,7 +5,7 @@ const RestaurantLayout =
   (Component) =>
   ({ props }) => {
     return (
-      <div>
+      <div className="flex flex-col justify-center">
         <NavBar />
         <Component {...props} />
       </div>
